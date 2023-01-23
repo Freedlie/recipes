@@ -1,0 +1,27 @@
+.ComplexSearchContainer{
+    background-image: url("./pexels-chan-walrus-958545.jpeg");
+    height: 600px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 350px;
+}
+
+.input{
+    height: 35px;
+    width: 600px;
+    border-radius: 10px;
+}
+
+.submit{
+    border-radius: 10px;
+    background: #a2a086;
+    color: #ede8cf;
+    font-size: 15px;
+}
