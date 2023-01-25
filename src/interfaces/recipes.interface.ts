@@ -3,6 +3,9 @@ export interface RecipesInterface{
     "title": string,
     "image"?: string,
     "imageType": string,
+    "readyInMinutes": number,
+    "aggregateLikes": number,
+    "type":string
 }
 
 export interface IRecipeInitialState{
@@ -19,4 +22,6 @@ export interface IRecipesServices{
 export interface IParams {
     query: string;
     cuisine: string;
+    diet:string;
+    type:string;
 }

@@ -1,20 +1,13 @@
-import React, {useEffect} from 'react';
-import {searchRecipesService} from "./services/searchRecipes.service";
+import React from 'react';
 import {Route, Routes} from "react-router-dom";
 import MainLayout from "./layouts/MainLayout/MainLayout";
 import MainPage from "./pages/MainPage";
+import css from './App.module.css'
 
 const App = () => {
 
-
-    useEffect(()=>{
-        searchRecipesService.getSearchRecipes('pasta','chinese').then(({data})=>{
-            console.log(data);
-        })
-    })
-
     return (
-        <div>
+        <div className={css.all}>
             <Routes>
                 <Route path={''} element={<MainLayout/>}>
                     <Route index element={<MainPage/>} />
