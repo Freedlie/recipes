@@ -2,12 +2,15 @@ import React, {FC, useEffect, useState} from 'react';
 
 import css from './ComplexSearch.module.css';
 import {getRecipes} from "../../redux";
-import {useAppDispatch} from "../../hooks";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 
 
 const ComplexSearch:FC = () => {
 
     const dispatch = useAppDispatch();
+
+    const {offset} = useAppSelector(state => state.recipeReducer);
+
 
     const [query,setQuery] =useState('');
     const [cuisine,setCuisine] =useState('');
@@ -16,8 +19,8 @@ const ComplexSearch:FC = () => {
     const [switcher,setSwitcher] = useState(false);
 
     useEffect(()=>{
-        dispatch(getRecipes({query, cuisine,diet,type}))
-    },[query, cuisine,diet, dispatch,type])
+        dispatch(getRecipes({query, cuisine,diet,type,offset}))
+    },[query, cuisine,diet, dispatch,type,offset])
 
     return (
         <div className={css.ComplexSearchContainer}>

@@ -4,9 +4,12 @@ import ComplexRecipe from "../ComplexRecipe/ComplexRecipe";
 import css from './ComplexRecipes.module.css'
 
 const ComplexRecipes:FC = () => {
-        const {recipes} = useAppSelector(state => state.recipeReducer)
+        const {recipes, totalResults} = useAppSelector(state => state.recipeReducer)
     return (
-        <div>
+        <div className={css.mainWrapper}>
+            <div className={css.totalResults}>
+                <p className={css.totalResultsTxt}>Searched <span className={css.fw}>{totalResults}</span> dishes from your request</p>
+            </div>
             <div className={css.recipesWrapper}>
                 {recipes.map((recipe)=> <ComplexRecipe key={recipe.id} recipe={recipe}/>)}
             </div>

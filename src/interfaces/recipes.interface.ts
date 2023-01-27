@@ -5,18 +5,21 @@ export interface RecipesInterface{
     "imageType": string,
     "readyInMinutes": number,
     "aggregateLikes": number,
-    "type":string
+    "type":string,
+    offset:number
 }
 
 export interface IRecipeInitialState{
-    recipes: RecipesInterface[]
+    recipes: RecipesInterface[],
+    offset: number,
+    totalResults: number
 }
 
 export interface IRecipesServices{
     results: RecipesInterface[],
     "offset": number,
     "number": number,
-    "totalResults": number
+    totalResults: number
 }
 
 export interface IParams {
@@ -24,4 +27,5 @@ export interface IParams {
     cuisine: string;
     diet:string;
     type:string;
+    offset:number
 }
