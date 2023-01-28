@@ -1,3 +1,5 @@
+import {InformationInterface} from "./information.interface";
+
 export interface RecipesInterface{
     "id": number,
     "title": string,
@@ -12,7 +14,8 @@ export interface RecipesInterface{
 export interface IRecipeInitialState{
     recipes: RecipesInterface[],
     offset: number,
-    totalResults: number
+    totalResults: number,
+    recipeDetails:InformationInterface
 }
 
 export interface IRecipesServices{

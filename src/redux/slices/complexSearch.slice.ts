@@ -1,4 +1,9 @@
-import {IRecipeInitialState, IRecipesServices,IParams} from "../../interfaces";
+import {
+    IRecipeInitialState,
+    IRecipesServices,
+    IParams,
+    IGetDetailsParams, InformationInterface, ExtendedIngredient
+} from "../../interfaces";
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
 import {searchRecipesService} from "../../services";
@@ -10,7 +15,46 @@ import {searchRecipesService} from "../../services";
 const initialState: IRecipeInitialState = {
     recipes: [],
     offset: 0,
-    totalResults: 0
+    totalResults: 0,
+    recipeDetails: {
+        id: 0,
+        title: '',
+        image: '',
+        imageType: '',
+        servings: 0,
+        readyInMinutes: 0,
+        nameClean: '',
+        license: '',
+        sourceName: '',
+        sourceUrl: '',
+        spoonacularSourceUrl: '',
+        aggregateLikes: 0,
+        healthScore: 0,
+        spoonacularScore: 0,
+        pricePerServing: 0,
+        analyzedInstructions:[],
+        cheap: false,
+        creditsText: '',
+        cuisines: [],
+        dairyFree: false,
+        diets: [],
+        gaps: '',
+        glutenFree: false,
+        instructions: '',
+        ketogenic: false,
+        lowFodmap: false,
+        occasions: [],
+        sustainable: false,
+        vegan: false,
+        vegetarian: false,
+        veryHealthy: false,
+        veryPopular:false,
+        whole30: false,
+        weightWatcherSmartPoints: 0,
+        dishTypes: [],
+        extendedIngredients: [],
+        summary:''
+    }
 }
 
 // @ts-ignore
@@ -23,6 +67,20 @@ export const getRecipes = createAsyncThunk<IRecipesServices,IParams, {rejectWith
         }catch (e) {
             return rejectWithValue((e as AxiosError).message)
         }
+    }
+)
+
+// @ts-ignore
+export const getRecipeDetails = createAsyncThunk<InformationInterface,IGetDetailsParams, {rejectWithValue?: unknown}>(
+    'complexSearch/getRecipeDetails',
+    async ({id},{rejectWithValue})=>{
+        try{
+            const {data} = await searchRecipesService.getRecipeByID(id);
+            return data;
+        } catch (e) {
+            return rejectWithValue((e as AxiosError).message)
+        }
+
     }
 )
 
@@ -65,6 +123,9 @@ const searchSlice = createSlice({
             state.recipes = action.payload.results;
             state.totalResults = action.payload.totalResults;
         })
+        .addCase(getRecipeDetails.fulfilled,(state, action)=>{
+            state.recipeDetails = action.payload;
+        })
 
 })
 
@@ -78,7 +139,8 @@ const searchActions = {
     getRecipes,
     incrementOffset,
     decrementOffset,
-    resetOffset
+    resetOffset,
+    getRecipeDetails
 }
 
 export {recipeReducer,searchActions}

@@ -5,6 +5,7 @@ export interface InformationInterface {
     imageType: string;
     servings: number;
     readyInMinutes: number;
+    nameClean : string;
     license: string;
     sourceName: string;
     sourceUrl: string;
@@ -34,6 +35,7 @@ export interface InformationInterface {
     weightWatcherSmartPoints: number;
     dishTypes: string[];
     extendedIngredients: ExtendedIngredient[];
+    summary:string
 }
 
 export interface ExtendedIngredient {
@@ -45,6 +47,7 @@ export interface ExtendedIngredient {
     measures: Measures;
     meta: string[];
     name: string;
+    nameClean: string;
     original: string;
     originalName: string;
     unit: string;
@@ -66,3 +69,12 @@ export interface Us {
     unitLong: string;
     unitShort: string;
 }
+
+export interface IGetDetailsParams{
+    id:number;
+}
+
+export interface IRecipeDetailsService{
+    recipeDetails: InformationInterface
+}
+

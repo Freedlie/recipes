@@ -1,0 +1,36 @@
+.ingredientBlock{
+    display: flex;
+    width: 30%;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.p{
+    text-align: center;
+}
+
+.wrapper{
+    width: 100%;
+    padding: 95px 20% 0 20%;
+    border: 1px solid red;
+}
+
+.rowMain{
+    display: flex;
+    border: 1px solid green;
+}
+
+.instruction{
+    font-size: 18px;
+}
+
+.img{
+    width: 400px;
+    margin: 0 0 15px 15px;
+}
+
+h2{
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+}
