@@ -18,12 +18,13 @@ export interface IStepProps{
         }
         number: number
         step: string
-    }
+    },
+    id: number
 
 }
 
 
-const StepInstruction:FC<IStepProps> = ({step}) => {
+const StepInstruction:FC<IStepProps> = ({step,id}) => {
     // console.log(step.equipment[0].image);
     return (
         <div className={css.wrapper}>
@@ -41,6 +42,9 @@ const StepInstruction:FC<IStepProps> = ({step}) => {
             </div>
             <div className={css.step}>
                 {step.step}
+                {step.equipment[0] && <div>
+                    <img src={`https://spoonacular.com/cdn/equipment_250x250/${step.equipment[0].image}`} alt="image"/>
+                </div>}
             </div>
         </div>
     );

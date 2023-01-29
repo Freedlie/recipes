@@ -6,6 +6,8 @@
     margin: 10px 0;
 }
 .name{
+    display: flex;
+    align-items: center;
 }
 
 .inf{

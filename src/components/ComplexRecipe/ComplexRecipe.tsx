@@ -25,17 +25,19 @@ const ComplexRecipe:FC<IRecipeProps> = ({recipe}) => {
 
     let id = recipe.id;
 
+
     return (
         <div className={css.recipeBlock}>
             <div className={css.recipeTitle}>
                 {recipe.title}
             </div>
             <NavLink to={'/recipeDetails'} className={css.blockImg}>
-                <img src={recipe.image} alt="img" onClick={()=> {
+                <img src={recipe.image} alt="img" onClick={()=>{
                     dispatch(getRecipeDetails({id}))
                     document.body.scrollTop = 0;
                     document.documentElement.scrollTop = 0;
-                }}/>
+                }
+                    }/>
             </NavLink>
             <div>
                 <div className={css.time}>

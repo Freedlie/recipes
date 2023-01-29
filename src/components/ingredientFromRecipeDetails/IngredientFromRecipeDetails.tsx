@@ -27,8 +27,9 @@ const IngredientFromRecipeDetails:FC<IIngredientProps> = ({ingredient}) => {
     return (
         <div>
             <div className={css.block}>
-                <div className={css.name}>{ingredient.nameClean}</div>
-
+                <div className={css.name}>
+                    <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt="imgIngredient"/>
+                    {ingredient.nameClean}</div>
                 <div className={css.inf}>{ingredient.original? ingredient.original: '...'}</div>
             </div>
         </div>

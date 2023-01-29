@@ -8,8 +8,6 @@ import StepInstruction from "../StepInstruction/StepInstruction";
 const RecipeDetails:FC = () => {
     const {recipeDetails} = useAppSelector(state => state.recipeReducer);
 
-    console.log(recipeDetails.analyzedInstructions[0].steps);
-
     return (
         <div className={css.wrapper}>
             <div className={css.rowMain}>
@@ -21,7 +19,6 @@ const RecipeDetails:FC = () => {
                     <img className={css.img} src={recipeDetails.image} alt=""/>
                 </div>
             </div>
-
             <div className={css.ingredientBlock}>
                 <p className={(css.p)}>ingredients:</p>
                 {recipeDetails.extendedIngredients.map((ingredient)=> <IngredientFromRecipeDetails key={ingredient.id} ingredient={ingredient}/>)}
@@ -32,7 +29,7 @@ const RecipeDetails:FC = () => {
                     <p className={css.p1}>Recipe Steps</p> <p className={css.p2}>{recipeDetails.analyzedInstructions[0].steps.length} steps</p>
                 </div>
                 <div>
-                    {recipeDetails.analyzedInstructions[0].steps.map((step:any)=> <StepInstruction step={step} key={step.number}/>)}
+                    {recipeDetails.analyzedInstructions[0].steps.map((step:any)=> <StepInstruction step={step} key={step.number} id={recipeDetails.id}/>)}
                 </div>
             </div>
             <div>

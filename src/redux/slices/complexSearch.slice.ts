@@ -32,7 +32,11 @@ const initialState: IRecipeInitialState = {
         healthScore: 0,
         spoonacularScore: 0,
         pricePerServing: 0,
-        analyzedInstructions:[],
+        analyzedInstructions:[
+            {
+                steps: []
+            }
+        ],
         cheap: false,
         creditsText: '',
         cuisines: [],
@@ -111,10 +115,10 @@ const searchSlice = createSlice({
         decrementOffset: (state, action) => {
             state.offset -= action.payload
             if (state.offset < 10) {
-                state.offset = 0
+                state.offset = 10
             }
         },
-        resetOffset:(state,action)=>{
+        resetOffset:(state)=>{
             state.offset = 0
         },
     },

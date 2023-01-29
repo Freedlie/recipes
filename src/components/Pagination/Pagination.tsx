@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {searchActions} from "../../redux";
 import css from './Pagination.module.css';
@@ -7,7 +7,11 @@ const Pagination:FC = () => {
 
     const dispatch = useAppDispatch();
 
-    const {offset} = useAppSelector(state => state.recipeReducer);
+    const {offset,totalResults} = useAppSelector(state => state.recipeReducer);
+
+    useEffect(()=>{
+        dispatch(searchActions.resetOffset());
+    },[totalResults])
 
     return (
         <div className={css.boxRow}>

@@ -14,7 +14,11 @@ export interface InformationInterface {
     healthScore: number;
     spoonacularScore: number;
     pricePerServing: number;
-    analyzedInstructions: any[];
+    analyzedInstructions: [
+        {
+            steps: []
+        }
+        ];
     cheap: boolean;
     creditsText: string;
     cuisines: any[];
