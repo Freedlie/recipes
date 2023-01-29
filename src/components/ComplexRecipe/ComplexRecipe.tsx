@@ -33,6 +33,8 @@ const ComplexRecipe:FC<IRecipeProps> = ({recipe}) => {
             <NavLink to={'/recipeDetails'} className={css.blockImg}>
                 <img src={recipe.image} alt="img" onClick={()=> {
                     dispatch(getRecipeDetails({id}))
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
                 }}/>
             </NavLink>
             <div>

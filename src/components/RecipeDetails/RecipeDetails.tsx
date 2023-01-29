@@ -15,20 +15,32 @@ const RecipeDetails:FC = () => {
             <div className={css.rowMain}>
                 <div>
                     <h2>{recipeDetails.title}</h2>
-                    <p className={css.instruction}>{recipeDetails.instructions}</p>
+                    <p className={css.instruction} dangerouslySetInnerHTML={{__html:recipeDetails.instructions}}></p>
                 </div>
                 <div>
                     <img className={css.img} src={recipeDetails.image} alt=""/>
                 </div>
             </div>
-            <div className={css.stepByStep}>
-                {recipeDetails.analyzedInstructions[0].steps.map((step:any)=> <StepInstruction step={step} key={step.number}/>)}
+
+            <div className={css.ingredientBlock}>
+                <p className={(css.p)}>ingredients:</p>
+                {recipeDetails.extendedIngredients.map((ingredient)=> <IngredientFromRecipeDetails key={ingredient.id} ingredient={ingredient}/>)}
             </div>
-            <div dangerouslySetInnerHTML={{__html:recipeDetails.summary}}/>
-            {/*<div className={css.ingredientBlock}>*/}
-            {/*    <p className={(css.p)}>ingredients:</p>*/}
-            {/*    {recipeDetails.extendedIngredients.map((ingredient)=> <IngredientFromRecipeDetails key={ingredient.id} ingredient={ingredient}/>)}*/}
-            {/*</div>*/}
+
+            <div className={css.stepByStep}>
+                <div className={css.stepTitle}>
+                    <p className={css.p1}>Recipe Steps</p> <p className={css.p2}>{recipeDetails.analyzedInstructions[0].steps.length} steps</p>
+                </div>
+                <div>
+                    {recipeDetails.analyzedInstructions[0].steps.map((step:any)=> <StepInstruction step={step} key={step.number}/>)}
+                </div>
+            </div>
+            <div>
+               <p className={css.Ad}>About Dish:</p>
+                <div className={css.html} dangerouslySetInnerHTML={{__html:recipeDetails.summary}}/>
+
+            </div>
+
         </div>
     );
 };
