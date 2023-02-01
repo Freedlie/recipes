@@ -1,9 +1,11 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {recipeReducer} from "./slices/complexSearch.slice";
+import {ingredientReducer} from "./slices/ingredientSearch.slice";
 
 
 const rootReducer = combineReducers({
-    recipeReducer
+    recipeReducer,
+    ingredientReducer
 })
 
 const setUpStore = () => configureStore({

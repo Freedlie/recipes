@@ -33,6 +33,7 @@ const Header:FC = () => {
             </div>
             <div className={css.link}>
                 <NavLink to={''}><span className={css.text}>Recipes</span></NavLink>
+                <NavLink to={'/IngredientsInterface'}><span className={css.text}>Ingredients</span></NavLink>
             </div>
         </div>
     );

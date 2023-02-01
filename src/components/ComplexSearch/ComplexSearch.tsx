@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 
 import css from './ComplexSearch.module.css';
-import {getRecipes} from "../../redux";
+import {getIngredients, getRecipes} from "../../redux";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 
 
@@ -18,12 +18,17 @@ const ComplexSearch:FC = () => {
     const [type,setType] = useState('');
     const [switcher,setSwitcher] = useState(false);
 
-    useEffect(()=>{
+    // useEffect(()=>{
+    //     dispatch(getRecipes({query, cuisine,diet,type,offset}))
+    // },[query])
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
         dispatch(getRecipes({query, cuisine,diet,type,offset}))
-    },[query, cuisine,diet, dispatch,type,offset])
+    };
 
     return (
-        <div className={css.ComplexSearchContainer}>
+        <div className={css.ComplexSearchContainer} onSubmit={handleSubmit}>
             <form className={css.form}>
                 <div>
                     <input className={css.input}

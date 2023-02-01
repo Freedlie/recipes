@@ -2,14 +2,15 @@ const baseURL = process.env.REACT_APP_API
 const apiKey = process.env.REACT_APP_TOKEN
 
 const urls = {
-    searchRecipes:'/complexSearch',
-    findByNutrients:'/findByNutrients',
-    findByIngredients: '/findByIngredients',
+    searchRecipes:'recipes/complexSearch',
+    findByNutrients:'recipes/findByNutrients',
+    findByIngredients: 'recipes/findByIngredients',
     information:'/information',
-    similar:'/similar',
-    random:'/random',
-    autocomplete:'./autocomplete',
+    similar:'recipes/similar',
+    random:'recipes/random',
+    autocomplete:'.recipes/autocomplete',
     ingredientsById:'/ingredientWidget.json',
+    ingredients: '/food/products/search',
     auth:{
         apiKey: '?apiKey=' + apiKey
     }
