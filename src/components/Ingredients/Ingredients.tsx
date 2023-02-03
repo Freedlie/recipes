@@ -1,16 +1,21 @@
 import React, {FC} from 'react';
 import {useAppSelector} from "../../hooks";
 import Ingredient from "../Ingredient/Ingredient";
+import css from './Ingredinets.module.css';
 
 const Ingredients:FC = () => {
 
-    const {products} = useAppSelector(state => state.ingredientReducer);
+    const {obj} = useAppSelector(state => state.ingredientReducer);
 
-    console.log(!products)
 
     return (
         <div>
-            {products.map((ingredient)=> <Ingredient key={ingredient.id} ingredient={ingredient}/>)}
+            <div className={css.totalProducts}>
+                <p className={css.totalProductsTxt}>Searched <span className={css.wf}>{obj.totalResults}</span> products from your request</p>
+            </div>
+            <div>
+                {obj.results.map((ingredient)=> <Ingredient key={ingredient.id} ingredient={ingredient}/>)}
+            </div>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage";
 import css from './App.module.css'
 import RecipeDetailsPage from "./pages/RecipeDetailsPage";
 import IngredientsPage from "./pages/IngredientsPage";
+import IngredientDetailsPage from "./pages/IngredientDetailsPage";
 
 const App = () => {
 
@@ -14,7 +15,8 @@ const App = () => {
                 <Route path={''} element={<MainLayout/>}>
                     <Route index element={<MainPage/>} />
                     <Route path={'/recipeDetails'} element={<RecipeDetailsPage/>}/>
-                    <Route path={'/IngredientsInterface'} element={<IngredientsPage/>}/>
+                    <Route path={'/IngredientsPage'} element={<IngredientsPage/>}/>
+                    <Route path={'/IngredientInfo'} element={<IngredientDetailsPage/>}/>
                 </Route>
             </Routes>
         </div>

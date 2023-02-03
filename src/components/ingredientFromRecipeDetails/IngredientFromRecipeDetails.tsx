@@ -1,13 +1,17 @@
 import React, {FC} from 'react';
 import {Measures} from "../../interfaces";
 import css from './ingredientFromRecipeDetails.module.css';
+import {NavLink} from "react-router-dom";
+import {useAppDispatch} from "../../hooks";
+import {getIngredientInfo} from "../../redux";
+import {IIngredientInfoParams} from "../../interfaces/IngredientInformation.interface";
 
 export interface IIngredientProps{
     ingredient:{
         aisle?: string;
         amount?: number;
         consistency?: string;
-        id?: number;
+        id: number;
         image?: string;
         measures?: Measures;
         meta?: string[];
@@ -22,14 +26,21 @@ export interface IIngredientProps{
 
 const IngredientFromRecipeDetails:FC<IIngredientProps> = ({ingredient}) => {
 
-    console.log(ingredient.image);
+    const dispatch = useAppDispatch();
+
+    let id = ingredient.id;
 
     return (
         <div>
             <div className={css.block}>
-                <div className={css.name}>
+                <NavLink to={'/IngredientInfo'} className={css.name} onClick={()=> {
+                    dispatch(getIngredientInfo({id}))
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+                }>
                     <img src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt="imgIngredient"/>
-                    {ingredient.nameClean}</div>
+                    {ingredient.nameClean}</NavLink>
                 <div className={css.inf}>{ingredient.original? ingredient.original: '...'}</div>
             </div>
         </div>

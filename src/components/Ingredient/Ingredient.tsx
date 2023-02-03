@@ -1,26 +1,37 @@
 import React, {FC} from 'react';
 import css from './Ingredient.module.css';
+import {getIngredientInfo, getRecipeDetails} from "../../redux";
+import {NavLink} from "react-router-dom";
+import {useAppDispatch} from "../../hooks";
 
 export interface IProps{
     ingredient:{
         id: number;
-        title: string;
+        name: string;
         image: string;
     }
 }
 
 const Ingredient:FC<IProps> = ({ingredient}) => {
 
-    return (
-        <div className={css.wrapper}>
-            <div className={css.ingredientBlock}>
-                <div className={css.ingredientTitle}>{ingredient.title}</div>
-                <div>
-                    <img className={css.ingredientImage} src={ingredient.image} alt="ingredientImg"/>
-                </div>
-            </div>
-        </div>
+    const dispatch = useAppDispatch();
 
+    let id = ingredient.id;
+
+    return (
+            <div className={css.wrapper}>
+                <NavLink className={css.ingredientBlock} to={'/IngredientInfo'} onClick={()=> {
+                    dispatch(getIngredientInfo({id}))
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+                }>
+                    <div className={css.ingredientTitle}>{ingredient.name}</div>
+                    <div>
+                             <img className={css.ingredientImage} src={`https://spoonacular.com/cdn/ingredients_100x100/${ingredient.image}`} alt="ingredientImg"/>
+                    </div>
+                </NavLink>
+            </div>
     );
 };
 

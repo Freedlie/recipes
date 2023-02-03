@@ -71,3 +71,11 @@
     background: #edb053;
     border-radius: 10px;
 }
+
+.searchTxt{
+    font-size: 24px;
+    font-weight: bold;
+    color: #e4ebce;
+    text-align: center;
+    margin-bottom: 50px;
+}

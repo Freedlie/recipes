@@ -4,11 +4,17 @@ import {NavLink} from "react-router-dom";
 import css from './Header.module.css';
 // @ts-ignore
 import img from './IMG_0616.jpg';
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import {searchActions} from "../../redux";
 
 const Header:FC = () => {
 
     const [lastScroll, setLastScroll] = useState(0);
     const [hidden, setHidden] = useState(false);
+
+    const {offset} = useAppSelector(state => state.recipeReducer);
+
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -33,7 +39,7 @@ const Header:FC = () => {
             </div>
             <div className={css.link}>
                 <NavLink to={''}><span className={css.text}>Recipes</span></NavLink>
-                <NavLink to={'/IngredientsInterface'}><span className={css.text}>Ingredients</span></NavLink>
+                <NavLink to={'/IngredientsPage'}><span className={css.text}>Ingredients</span></NavLink>
             </div>
         </div>
     );

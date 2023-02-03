@@ -10,7 +10,8 @@ const urls = {
     random:'recipes/random',
     autocomplete:'.recipes/autocomplete',
     ingredientsById:'/ingredientWidget.json',
-    ingredients: '/food/products/search',
+    ingredients: '/food/ingredients/search',
+    ingredientInfo:'/food/ingredients',
     auth:{
         apiKey: '?apiKey=' + apiKey
     }

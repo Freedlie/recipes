@@ -74,6 +74,20 @@ export const getRecipes = createAsyncThunk<IRecipesServices,IParams, {rejectWith
     }
 )
 
+// // @ts-ignore
+// export const getRecipeDetails = createAsyncThunk<InformationInterface,IGetDetailsParams, {rejectWithValue?: unknown}>(
+//     'complexSearch/getRecipeDetails',
+//     async ({id},{rejectWithValue})=>{
+//         try{
+//             const {data} = await searchRecipesService.getRecipeByID(id);
+//             return data;
+//         } catch (e) {
+//             return rejectWithValue((e as AxiosError).message)
+//         }
+//
+//     }
+// )
+
 // @ts-ignore
 export const getRecipeDetails = createAsyncThunk<InformationInterface,IGetDetailsParams, {rejectWithValue?: unknown}>(
     'complexSearch/getRecipeDetails',

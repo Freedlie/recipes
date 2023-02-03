@@ -18,9 +18,13 @@ const ComplexSearch:FC = () => {
     const [type,setType] = useState('');
     const [switcher,setSwitcher] = useState(false);
 
-    // useEffect(()=>{
-    //     dispatch(getRecipes({query, cuisine,diet,type,offset}))
-    // },[query])
+        useEffect(()=>{
+            if(offset > 1){
+                dispatch(getRecipes({query, cuisine,diet,type,offset}))
+            }
+        },[offset])
+
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -30,6 +34,9 @@ const ComplexSearch:FC = () => {
     return (
         <div className={css.ComplexSearchContainer} onSubmit={handleSubmit}>
             <form className={css.form}>
+                <div className={css.searchTxt}>
+                    <span>Here you can search some dishes</span>
+                </div>
                 <div>
                     <input className={css.input}
                            type="text"
