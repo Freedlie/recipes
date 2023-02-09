@@ -1,15 +1,17 @@
 import React, {FC} from 'react';
-import {useAppSelector} from "../../hooks";
-import css from './IngredientDetails.module.css';
 import { VictoryPie, VictorySharedEvents,VictoryLabel,VictoryBar} from 'victory';
+
+import {useAppDispatch, useAppSelector} from "../../hooks";
+import css from './IngredientDetails.module.css';
 import Nutrient from "../Nutrient/Nutrient";
+import {IngredientsActions} from "../../redux";
 
 
 const IngredientDetails:FC = () => {
 
-    const {ingredientDetails} = useAppSelector(state => state.ingredientReducer)
-    console.log(ingredientDetails.data.nutrition.caloricBreakdown.percentProtein);
+    let {ingredientDetails} = useAppSelector(state => state.ingredientReducer);
 
+    const dispatch = useAppDispatch();
 
     return (
         <div className={css.wrapper}>
@@ -80,6 +82,14 @@ const IngredientDetails:FC = () => {
                             </VictorySharedEvents>
                         </svg>
                     </div>
+                </div>
+                <div className={css.btnBlock}>
+                    <button className={css.btn} onClick={()=> {
+                        dispatch(IngredientsActions.addItem(ingredientDetails.data));
+
+                        // localStorage.setItem('ingredient',`${ingredientDetails.data.name}`);
+                        // i++;
+                    }}>Add to basket</button>
                 </div>
                 <div className={css.img}>
                     <img src={`https://spoonacular.com/cdn/ingredients_250x250/${ingredientDetails.data.image}`} alt="imgIngredient"/>

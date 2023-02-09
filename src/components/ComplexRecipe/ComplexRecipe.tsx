@@ -1,7 +1,7 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useState} from 'react';
+import {NavLink} from "react-router-dom";
 
 import css from './ComplexRecipe.module.css';
-import {NavLink} from "react-router-dom";
 import {useAppDispatch} from "../../hooks";
 import {getRecipeDetails} from "../../redux";
 

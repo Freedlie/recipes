@@ -25,7 +25,6 @@ export interface IStepProps{
 
 
 const StepInstruction:FC<IStepProps> = ({step,id}) => {
-    // console.log(step.equipment[0].image);
     return (
         <div className={css.wrapper}>
             <div className={css.mainTxt}>

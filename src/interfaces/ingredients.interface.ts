@@ -14,6 +14,14 @@ export interface Item {
 }
 
 export interface IIngredientsInitialState{
+    basketItems:[
+        {
+                id: number;
+                name: string;
+                image: string;
+        }
+    ],
+    i:number,
     obj:{
         results: Item[];
         offset: number;

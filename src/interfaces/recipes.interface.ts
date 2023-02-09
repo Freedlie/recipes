@@ -1,4 +1,5 @@
 import {InformationInterface} from "./information.interface";
+import {findByIngredientsInterface} from "./findByIngredients.interface";
 
 export interface RecipesInterface{
     "id": number,
@@ -12,6 +13,10 @@ export interface RecipesInterface{
 }
 
 export interface IRecipeInitialState{
+    basketRecipes: {
+        data: findByIngredientsInterface[]
+
+    },
     recipes: RecipesInterface[],
     offset: number,
     totalResults: number,

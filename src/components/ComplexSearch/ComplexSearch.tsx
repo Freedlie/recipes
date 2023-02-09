@@ -1,7 +1,7 @@
 import React, {FC, useEffect, useState} from 'react';
 
 import css from './ComplexSearch.module.css';
-import {getIngredients, getRecipes} from "../../redux";
+import {getRecipes} from "../../redux";
 import {useAppDispatch, useAppSelector} from "../../hooks";
 
 

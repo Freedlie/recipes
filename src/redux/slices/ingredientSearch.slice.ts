@@ -1,17 +1,25 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {AxiosError} from "axios";
-import {searchIngredientService, searchRecipesService} from "../../services";
+
+import {searchIngredientService} from "../../services";
 import {
     IIngredientsInitialState,
     IIngredientsParams,
     IIngredientsServices,
 } from "../../interfaces/ingredients.interface";
-
 import {IIngredientInfoParams,IIngredientInfoServices} from "../../interfaces/IngredientInformation.interface"
 
 
 
 const initialState: IIngredientsInitialState = {
+    basketItems:[
+        {
+            id: 0,
+            name: '',
+            image: ''
+        }
+    ],
+    i:0,
     obj:{
         results: [],
         offset: 0,
@@ -83,9 +91,6 @@ export const getIngredientInfo = createAsyncThunk<IIngredientInfoServices,IIngre
 )
 
 
-
-
-
 const IngredientsSlice = createSlice({
     name: 'IngredientsSlice',
     initialState,
@@ -102,6 +107,21 @@ const IngredientsSlice = createSlice({
         resetOffset:(state)=>{
             state.obj.offset = 0
         },
+        addItem:(state,action)=>{
+            state.basketItems.push(action.payload);
+            for (let i = 0; i < state.basketItems.length; i++) {
+                if(state.basketItems[i].id === 0){
+                    state.basketItems.splice(i,1);
+                }
+            }
+        },
+        removeItem:(state,action)=>{
+            for (let i = 0; i < state.basketItems.length; i++) {
+                if(state.basketItems[i].id === action.payload){
+                    state.basketItems.splice(i,1);
+                }
+            }
+        }
     },
     extraReducers: builder => builder
         .addCase(getIngredients.fulfilled,(state, action)=>{
@@ -115,7 +135,7 @@ const IngredientsSlice = createSlice({
 
 const {
     reducer: ingredientReducer, actions:{
-        incrementOffset,decrementOffset,resetOffset
+        incrementOffset,decrementOffset,resetOffset,addItem,removeItem
     }
 } = IngredientsSlice;
 
@@ -124,7 +144,9 @@ const IngredientsActions = {
     incrementOffset,
     decrementOffset,
     resetOffset,
-    getIngredientInfo
+    getIngredientInfo,
+    addItem,
+    removeItem
 }
 
 export {ingredientReducer,IngredientsActions}

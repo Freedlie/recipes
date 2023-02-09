@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import css from './Ingredient.module.css';
-import {getIngredientInfo, getRecipeDetails} from "../../redux";
 import {NavLink} from "react-router-dom";
+
+import css from './Ingredient.module.css';
+import {getIngredientInfo} from "../../redux";
 import {useAppDispatch} from "../../hooks";
 
 export interface IProps{

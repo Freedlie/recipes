@@ -1,4 +1,5 @@
 import React, {FC, useEffect} from 'react';
+
 import {useAppDispatch, useAppSelector} from "../../hooks";
 import {searchActions} from "../../redux";
 import css from './Pagination.module.css';

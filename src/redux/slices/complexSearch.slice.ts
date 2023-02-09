@@ -1,11 +1,15 @@
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AxiosError} from "axios";
+
 import {
     IRecipeInitialState,
     IRecipesServices,
     IParams,
-    IGetDetailsParams, InformationInterface, ExtendedIngredient
+    IGetDetailsParams,
+    InformationInterface,
+    findByIngredientsInterface,
+    IGetBasketRecipeParams,
 } from "../../interfaces";
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {AxiosError} from "axios";
 import {searchRecipesService} from "../../services";
 
 // interface MyKnownError {
@@ -13,6 +17,50 @@ import {searchRecipesService} from "../../services";
 // }
 
 const initialState: IRecipeInitialState = {
+    basketRecipes:{
+        data:[
+                {
+                    id: 0,
+                    image: '',
+                    imageType: '',
+                    likes: 0,
+                    missedIngredientCount: 0,
+                    missedIngredients: [
+                        {
+                            aisle: '',
+                            amount: 0,
+                            id: 0,
+                            image: '',
+                            meta: [],
+                            name: '',
+                            original: '',
+                            originalName: '',
+                            unit: '',
+                            unitLong: '',
+                            unitShort: '',
+                        }
+                    ],
+                    title: '',
+                    unusedIngredients: [],
+                    usedIngredientCount: 0,
+                    usedIngredients: [
+                        {
+                            aisle: '',
+                            amount: 0,
+                            id: 0,
+                            image: '',
+                            meta: [],
+                            name: '',
+                            original: '',
+                            originalName: '',
+                            unit: '',
+                            unitLong: '',
+                            unitShort: '',
+                        }
+                    ]
+                }
+            ]
+        },
     recipes: [],
     offset: 0,
     totalResults: 0,
@@ -119,6 +167,20 @@ export const getRecipeDetails = createAsyncThunk<InformationInterface,IGetDetail
 //     }
 //     )
 
+
+// @ts-ignore
+export const getRecipesByIngredients = createAsyncThunk<findByIngredientsInterface[],IGetBasketRecipeParams,{rejectWithValue?: unknown}>(
+    'complexSearch/getRecipesByIngredients',
+    async ({ingredients},{rejectWithValue})=>{
+        try {
+            const {data} = await searchRecipesService.getRecipeByIngredients(ingredients);
+            return data;
+        }catch (e) {
+            return rejectWithValue((e as AxiosError).message)
+        }
+    }
+)
+
 const searchSlice = createSlice({
     name: 'searchSlice',
     initialState,
@@ -144,6 +206,10 @@ const searchSlice = createSlice({
         .addCase(getRecipeDetails.fulfilled,(state, action)=>{
             state.recipeDetails = action.payload;
         })
+        .addCase(getRecipesByIngredients.fulfilled,(state,action)=>{
+
+            state.basketRecipes.data = action.payload;
+        })
 
 })
 
@@ -158,7 +224,8 @@ const searchActions = {
     incrementOffset,
     decrementOffset,
     resetOffset,
-    getRecipeDetails
+    getRecipeDetails,
+    getRecipesByIngredients
 }
 
 export {recipeReducer,searchActions}

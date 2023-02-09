@@ -1,26 +1,23 @@
 import React, {FC, useEffect, useState} from 'react';
+
 import css from "../ComplexSearch/ComplexSearch.module.css";
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {getIngredients, getRecipes} from "../../redux";
+import {getIngredients} from "../../redux";
 
 const IngredientSearch:FC = () => {
 
     const dispatch = useAppDispatch();
 
     const [query,setQuery] =useState('');
-    // const [offset,setOffset] =useState(0);
-
 
     const {obj} = useAppSelector(state => state.ingredientReducer);
     let offset = obj.offset
 
     useEffect(()=>{
-        // setOffset(obj.offset);
         if(obj.offset > 1){
             dispatch(getIngredients({query,offset}))
         }
     },[obj.offset])
-
 
 
     const handleSubmit = (e: React.FormEvent) => {

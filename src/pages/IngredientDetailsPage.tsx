@@ -1,4 +1,5 @@
 import React, {FC} from 'react';
+
 import IngredientDetails from "../components/IngredientDetails/IngredientDetails";
 
 const IngredientDetailsPage:FC = () => {

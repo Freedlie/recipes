@@ -1,10 +1,10 @@
 import React, {FC} from 'react';
+import {NavLink} from "react-router-dom";
+
 import {Measures} from "../../interfaces";
 import css from './ingredientFromRecipeDetails.module.css';
-import {NavLink} from "react-router-dom";
 import {useAppDispatch} from "../../hooks";
 import {getIngredientInfo} from "../../redux";
-import {IIngredientInfoParams} from "../../interfaces/IngredientInformation.interface";
 
 export interface IIngredientProps{
     ingredient:{

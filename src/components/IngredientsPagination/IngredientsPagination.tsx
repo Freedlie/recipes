@@ -1,6 +1,7 @@
 import React, {FC, useEffect} from 'react';
+
 import {useAppDispatch, useAppSelector} from "../../hooks";
-import {IngredientsActions, searchActions} from "../../redux";
+import {IngredientsActions} from "../../redux";
 import css from "../Pagination/Pagination.module.css";
 
 const IngredientsPagination:FC = () => {

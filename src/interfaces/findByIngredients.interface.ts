@@ -1,4 +1,4 @@
- export interface findByIngredientsInterface {
+export interface findByIngredientsInterface {
     id: number,
     image: string,
     imageType: string,
@@ -23,5 +23,13 @@
     unit: string,
     unitLong: string,
     unitShort: string
+}
+
+export interface IGetBasketRecipeParams{
+    ingredients:string;
+}
+
+export interface IBasketRecipeServices{
+    data:findByIngredientsInterface[]
 }
 
